@@ -1,10 +1,5 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
 
-html {
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-  }
-  
 h1,
 h2,
 h3,
@@ -28,8 +23,8 @@ p {
 
 ul,
 ol {
-    
-    margin: 0;
+    margin-top: 0;
+    margin-bottom: 0;
     padding-left: 0;
     list-style: none;
 }
@@ -56,16 +51,3 @@ body {
         overflow: hidden;
     }
 }
-
-.visually-hidden {
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    border: 0;
-    padding: 0;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    margin: -1px;
-  }

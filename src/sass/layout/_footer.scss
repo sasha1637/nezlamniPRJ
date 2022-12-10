@@ -1,0 +1,49 @@
+  @media screen and(min-width:768px){
+.footer__box{
+    Height: 77px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F7F7F7;
+}
+
+.footer__text{
+    display: flex;
+    text-align: center;
+    margin-left: 5px;
+}
+
+.team{
+    margin-left: 5px;
+    text-decoration: underline;
+}
+
+.svg{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+}
+
+  @media screen and (min-width:320px) and(max-width: 767px) {
+    .footer__box {
+            Height: 77px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #F7F7F7;
+        }
+    .footer__text{
+      font-size: 14px;
+      line-height: 1.4;
+      justify-content: center;
+      }
+          .team {
+              margin-left: 5px;
+              text-decoration: underline;
+          }
+    
+          .svg {
+              margin-left: 5px;
+              margin-right: 5px;
+          }
+    }

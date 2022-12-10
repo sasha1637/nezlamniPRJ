@@ -1,6 +1,6 @@
 import { API_KEY } from "./API_KEY";
 import axios from 'axios';
-import { BASE_URL } from "./baseUrl";
+import { BASE_URL } from './baseUrl';
 
 export class TrendingFilmsApiService{
     constructor(){

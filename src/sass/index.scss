@@ -7,7 +7,7 @@
 // base
 @import './base/common';
 @import './base/container';
-
+@import './base/variables';
 
 // components
 
@@ -17,5 +17,6 @@
 @import './layout/header';
 @import './layout/main';
 @import './layout/footer';
+
 
 // utils

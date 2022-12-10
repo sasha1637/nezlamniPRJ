@@ -1,5 +1,6 @@
 import { TrendingFilmsApiService } from "./apiFilms/apiTrending";
 import axios from 'axios';
+<<<<<<< HEAD
 console.log('from main.js')
 const trending  = new TrendingFilmsApiService()
 trending.fetchFilms().then(response => console.log(response.results))
@@ -33,3 +34,7 @@ function markUpGallery(filmsArr, genres) {
       .join('');
   }
   
+=======
+const trendingFilmsApiService = new TrendingFilmsApiService()
+trendingFilmsApiService.fetchFilms().then(response => console.log(response))
+>>>>>>> 73ba0387242b39979eb9e6ffe8dca3ae55083b29

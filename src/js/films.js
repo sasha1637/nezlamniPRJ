@@ -12,40 +12,45 @@ const trending  = new TrendingFilmsApiService()
 const filmGallery = document.querySelector('.film-gallery')
 
 trending.fetchFilms().then(response => 
-    // console.log(response.results)
-    filmGallery.innerHTML = markUpGallery(response.results)
+    console.log(response.results)
+    // filmGallery.innerHTML = markUpGallery(response.results)
     )
-trending.fetchGenres().then(response =>console.log(response))
-
-
+// trending.fetchGenres().then(response =>
+//     console.log(response))
 
 
  async function filmer(){
     try{
+
+const films = await trending.fetchFilms()
 const genres = await trending.fetchGenres()
 trending.genres = genres;
+console.log("into filmer -trending.genres",trending.genres)
+console.log("into filmer -genres",genres)
+filmGallery.innerHTML = markUpGallery(films,genres)
     } catch(err){
 console.log(err)
     }
  }
 
- console.log('trending.genres', trending.genres)
+filmer()
  
-function markUpGallery(filmsArr) {
+function markUpGallery(filmsArr,genres) {
+    console.log("filmsArr", filmsArr)
+    console.log("genres", genres)
         return filmsArr
       .map(
         ({id, title, release_date, poster_path, genre_ids}) =>{
             const imgPath = `https://image.tmdb.org/t/p/w500${poster_path}`
             const releaseDate = new Date(`${release_date}`);
 const releaseYear = releaseDate.getFullYear()
-// const genres = await trending.fetchGenres();
-// console
-            // const genresList = genres.filter(genre => genre_ids.includes(genre.id))
+const genresList = genres.filter(genre => genre_ids.includes(genre.id)).map(arr=>arr.name)
+
           return `<li class = "gallery-item">
            <img class="gallery-image" src="${imgPath}" alt="${title}" loading="lazy"/>
            <div class="info">
             <p class="info-item">${title.toUpperCase()}</p>
-            <p class="info-item">${genre_ids} | ${releaseYear}</p>
+            <p class="info-item">${Object.values(genresList)} | ${releaseYear}</p>
           </div>
           </li>`}
       )

@@ -1,11 +1,15 @@
 import { API_KEY } from "./apiKey";
+import { BASE_URL } from './baseUrl'
+
 import axios from 'axios';
-import { BASE_URL } from "./baseUrl";
-console.log(BASE_URL)
+
+
+
 export class TrendingFilmsApiService{
     constructor(){
         this.page = 1;
         this.genres = this.fetchGenres();
+        
     }
 
     async fetchFilms() {

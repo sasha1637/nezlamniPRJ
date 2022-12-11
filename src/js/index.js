@@ -1,2 +1,2 @@
-import './films'
+import './films';
 import './pagination';

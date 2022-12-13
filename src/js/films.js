@@ -27,7 +27,9 @@ const genres = await trending.fetchGenres()
 trending.genres = genres;
 console.log("into filmer -trending.genres",trending.genres)
 console.log("into filmer -genres",genres)
-filmGallery.innerHTML = markUpGallery(films,genres)
+// filmGallery.innerHTML = markUpGallery(films,genres)
+filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films,genres))
+
     } catch(err){
 console.log(err)
     }

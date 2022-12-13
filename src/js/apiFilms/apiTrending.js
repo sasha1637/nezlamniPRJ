@@ -15,7 +15,7 @@ export class TrendingFilmsApiService{
     async fetchFilms() {
         try {
        const options = {params: {api_key: API_KEY}}
-            const url = `${BASE_URL}/trending/movie/week?`
+            const url = `${BASE_URL}/trending/movie/week?page=${this.page}`
           const response = await axios.get(url, options);
           return response.data.results;
         } catch (error) {

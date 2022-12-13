@@ -48,11 +48,12 @@ function markUpGallery(filmsArr,genres) {
 const releaseYear = releaseDate.getFullYear()
 const genresList = genres.filter(genre => genre_ids.includes(genre.id)).map(arr=>arr.name)
 
-          return `<li class = "gallery-item">
-           <img class="gallery-image" src="${imgPath}" alt="${title}" loading="lazy"/>
-           <div class="info">
-            <p class="info-item">${title.toUpperCase()}</p>
-            <p class="info-item">${Object.values(genresList)} | ${releaseYear}</p>
+
+          return `<li class = "film-gallery__item">
+           <img class="film-gallery__image" src="${imgPath}" alt="${title}" loading="lazy"/>
+           <div class="film-gallery__info">
+            <p class="film-gallery__title">${title.toUpperCase()}</p>
+            <p class="film-gallery__text">${Object.values(genresList).join(', ')} | ${releaseYear}</p>
           </div>
           </li>`}
       )

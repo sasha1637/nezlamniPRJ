@@ -43,7 +43,7 @@ async function filmer() {
 
 filmer();
 
-function markUpGallery(filmsArr, genres) {
+export function markUpGallery(filmsArr, genres) {
   console.log('filmsArr', filmsArr);
   console.log('genres', genres);
   return filmsArr

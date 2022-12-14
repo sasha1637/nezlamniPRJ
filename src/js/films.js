@@ -10,19 +10,16 @@ console.log(btnRef);
 btnRef.style.display = 'none';
 btnRef.addEventListener('click', onLoadMore);
 function onLoadMore() {
-  console.log('bgkjhghkgobject');
+  // console.log('bgkjhghkgobject');
   trending.incrementPage();
-  trending
-    .fetchFilms()
-    .then(response => console.log('response2', response))
-    .then(filmer);
-  //     .then(); //так чтоб в скобки зпсунуть функцию отрисовкм
+  filmer();
+  //     .t
 }
 
-trending.fetchFilms().then(
-  response => console.log(response)
-  // filmGallery.innerHTML = markUpGallery(response.results)
-);
+// trending.fetchFilms().then(
+//   response => console.log(response)
+//   // filmGallery.innerHTML = markUpGallery(response.results)
+// );
 // trending.fetchGenres().then(response =>
 //     console.log(response))
 
@@ -43,7 +40,7 @@ async function filmer() {
 
 filmer();
 
-   function markUpGallery(filmsArr, genres) {
+function markUpGallery(filmsArr, genres) {
   console.log('filmsArr', filmsArr);
   console.log('genres', genres);
   return filmsArr
@@ -55,12 +52,13 @@ filmer();
         .filter(genre => genre_ids.includes(genre.id))
         .map(arr => arr.name);
 
-
-          return `<li class = "film-gallery__item" data-id="${id}">
+      return `<li class = "film-gallery__item" data-id="${id}">
            <img class="film-gallery__image" src="${imgPath}" alt="${title}" loading="lazy"/>
            <div class="film-gallery__info">
             <p class="film-gallery__title">${title.toUpperCase()}</p>
-            <p class="film-gallery__text">${Object.values(genresList).join(', ')} | ${releaseYear}</p>
+            <p class="film-gallery__text">${Object.values(genresList).join(
+              ', '
+            )} | ${releaseYear}</p>
           </div>
           </li>`;
     })

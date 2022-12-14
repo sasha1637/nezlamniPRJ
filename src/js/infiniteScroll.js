@@ -2,7 +2,7 @@ import { API_KEY } from './apiFilms/apiKey';
 import { BASE_URL } from './apiFilms/baseUrl';
 
 import fetchMovies from './apiFilms/fetchMovies';
-import { markUpGallery } from './films';
+import { markUpGallery } from '../js/films';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import axios from 'axios';

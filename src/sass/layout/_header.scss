@@ -54,20 +54,20 @@
     justify-content: space-between;
     align-items: center;
 
-    &_logo {
+    &__logo {
         display: flex;
         align-items: baseline;
         cursor: pointer;
           align-items: center
 }
-    &_logo_icon {
+    &__logo_icon {
         display: block;
         width: 24px; 
         height:24px;
         stroke:white;
         cursor: pointer;
  }
-    &_title {
+    &__title {
         display: none;
         margin-left: 10px;
         font-weight: 500;
@@ -81,29 +81,30 @@
         }
     }
 
-    &_list {
+    &__list {
         display: flex;
+        &--item {
+                padding: 0;
+                &:not(:last-child) {
+                    margin-right: 39px;
+                }
+            }
     }
     
 
     
-    &_button {
-    padding: 0;
-        &:not(:last-child) {
-            margin-right: 39px;
-        }
-    }
+   
 }
-button {
-    display: inline-block;
-    border: 0;
-    font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
-    color: $title-color;
-    background-color: transparent;
-    text-transform: uppercase;
-}
+// p {
+//     display: inline-block;
+//     border: 0;
+//     font-size: 12px;
+//     font-weight: 500;
+//     cursor: pointer;
+//     color: $title-color;
+//     background-color: transparent;
+//     text-transform: uppercase;
+// }
 
 
 //Узнатьу колег
@@ -169,7 +170,7 @@ button {
 
 
 
-// JS нужно по клику менять какая кнопка активна
+//нужно по клику менять какая кнопка активна
 .navigation_list--active {
     position: relative;
 

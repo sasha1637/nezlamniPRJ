@@ -2,43 +2,33 @@
 <div class="section">
 <div class="container">
     <nav class="navigation">
-    <div class="nav_logo">
-        <object class="navigation_logo_icon name="graph"
-        type="image/svg+xml" data="./images/header/svg/film.svg" width="100%" height="100%"></object>
-    <p class="navigation_title">Filmoteka</p>
-    </div>
-        <div class="navigation_list ">
-            <a  class=" navigation_list--active" href="./index.html"> Home </a>
-            <!-- <button class="button navigation_button navigation_button--active">
-                Home
-            </button> -->
-            <!-- <a href="./partials/myLibrary.html"></a> -->
-            <button class="navigation_button ">
-            my library
-            </button>
-        </div>
+<a class="navigation__logo" href="./index.html"> 
+    <svg class="navigation__logo_icon">
+        <use href="./images/svg/symbol-defs.svg#icon-film"></use>
+    </svg>
+<p class="navigation__title">Filmoteka</p>
+</a>
+    <ul class="navigation__list ">
+        <li class="navigation__list--item navigation_list--active"><a href="./index.html"> Home </a>
+</li>
+        <li class="navigation__list--item"><a href="./partials/myLibrary.html">My library</a>
+</li>
+    </ul>
+       
     </nav>
-
-
-
-
     <form class="search js-search__form">
         <label>
-            <input type="text" class="search_input" name="query" placeholder="Search films" />
+            <input type="text" class="search_input" name="query" placeholder="Search films">
         </label>
         <button type="submit" class="search_btn js-search_button">
-                    <object class="search_svg name="graph" type="image/svg+xml" data="./images/header/svg/search.svg"
-                        width="100%" height="100%"></object>
+            <svg class="search_svg" width="14px" height="14px"> 
+                <use href="./images/svg/symbol-defs.svg#icon-search"></use>
+            </svg>
         </button>
     </form>
 <p class="search_error hide">
 Search result not successful. Enter the correct movie name and
 </p>
-
 </div>
-
 </div>
-
-
-
 </header>

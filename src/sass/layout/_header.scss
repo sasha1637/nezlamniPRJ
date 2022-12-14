@@ -1,5 +1,5 @@
 // при загрузке загружаеться эти стили , принажатии на home тоже
-.overlay {
+.overlay-header {
     height: 230px;
     margin-left: auto;
     margin-right: auto;
@@ -49,7 +49,7 @@
 }
 //==================================================================
 
-.nav {
+.navigation {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -170,7 +170,7 @@ button {
 
 
 // JS нужно по клику менять какая кнопка активна
-.nav_button--active {
+.navigation_list--active {
     position: relative;
 
     &::after {

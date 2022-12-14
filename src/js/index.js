@@ -1,3 +1,3 @@
-import '../js/films';
+import './films';
 import './pagination';
 import './apiFilms/apiSearch';

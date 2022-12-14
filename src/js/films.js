@@ -55,6 +55,14 @@ function markUpGallery(filmsArr, genres) {
         .filter(genre => genre_ids.includes(genre.id))
         .map(arr => arr.name);
 
+<<<<<<< HEAD
+
+          return `<li class = "film-gallery__item">
+           <img class="film-gallery__image" src="${imgPath}" alt="${title}" loading="lazy"/>
+           <div class="film-gallery__info">
+            <p class="film-gallery__title">${title.toUpperCase()}</p>
+            <p class="film-gallery__text">${Object.values(genresList).join(', ')} | ${releaseYear}</p>
+=======
       return `<li class = "gallery-item">
            <img class="gallery-image" src="${imgPath}" alt="${title}" loading="lazy"/>
            <div class="info">
@@ -62,6 +70,7 @@ function markUpGallery(filmsArr, genres) {
             <p class="info-item">${Object.values(
               genresList
             )} | ${releaseYear}</p>
+>>>>>>> 39150f009268cf8d9f4dea4f3f12124616eb827d
           </div>
           </li>`;
     })

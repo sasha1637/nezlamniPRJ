@@ -1,5 +1,5 @@
 import { BASE_URL } from './apiFilms/baseUrl';
-
+export { markUpGallery };
 import { TrendingFilmsApiService } from './apiFilms/apiTrending';
 import axios from 'axios';
 const trending = new TrendingFilmsApiService();
@@ -43,7 +43,7 @@ async function filmer() {
 
 filmer();
 
-function markUpGallery(filmsArr, genres) {
+   function markUpGallery(filmsArr, genres) {
   console.log('filmsArr', filmsArr);
   console.log('genres', genres);
   return filmsArr

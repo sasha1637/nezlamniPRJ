@@ -1,62 +1,78 @@
+import { BASE_URL } from './apiFilms/baseUrl';
 
-import { BASE_URL } from "./apiFilms/baseUrl";
-
-
-import { TrendingFilmsApiService } from "./apiFilms/apiTrending";
+import { TrendingFilmsApiService } from './apiFilms/apiTrending';
 import axios from 'axios';
-const trending  = new TrendingFilmsApiService()
+const trending = new TrendingFilmsApiService();
 
+const filmGallery = document.querySelector('.film-gallery');
+const btnRef = document.querySelector('.btn-lm');
+console.log(btnRef);
+btnRef.style.display = 'none';
+btnRef.addEventListener('click', onLoadMore);
+function onLoadMore() {
+  console.log('bgkjhghkgobject');
+  trending.incrementPage();
+  trending
+    .fetchFilms()
+    .then(response => console.log('response2', response))
+    .then(filmer);
+  //     .then(); //так чтоб в скобки зпсунуть функцию отрисовкм
+}
 
-
-
-const filmGallery = document.querySelector('.film-gallery')
-
-trending.fetchFilms().then(response => 
-    console.log(response.results)
-    // filmGallery.innerHTML = markUpGallery(response.results)
-    )
+trending.fetchFilms().then(
+  response => console.log(response)
+  // filmGallery.innerHTML = markUpGallery(response.results)
+);
 // trending.fetchGenres().then(response =>
 //     console.log(response))
 
+async function filmer() {
+  try {
+    const films = await trending.fetchFilms();
+    const genres = await trending.fetchGenres();
+    trending.genres = genres;
+    console.log('into filmer -trending.genres', trending.genres);
+    console.log('into filmer -genres', genres);
+    // filmGallery.innerHTML = markUpGallery(films,genres)
+    filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films, genres));
+    btnRef.style.display = 'block';
+  } catch (err) {
+    console.log(err);
+  }
+}
 
- async function filmer(){
-    try{
+filmer();
 
-const films = await trending.fetchFilms()
-const genres = await trending.fetchGenres()
-trending.genres = genres;
-console.log("into filmer -trending.genres",trending.genres)
-console.log("into filmer -genres",genres)
-// filmGallery.innerHTML = markUpGallery(films,genres)
-filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films,genres))
+function markUpGallery(filmsArr, genres) {
+  console.log('filmsArr', filmsArr);
+  console.log('genres', genres);
+  return filmsArr
+    .map(({ id, title, release_date, poster_path, genre_ids }) => {
+      const imgPath = `https://image.tmdb.org/t/p/w500${poster_path}`;
+      const releaseDate = new Date(`${release_date}`);
+      const releaseYear = releaseDate.getFullYear();
+      const genresList = genres
+        .filter(genre => genre_ids.includes(genre.id))
+        .map(arr => arr.name);
 
-    } catch(err){
-console.log(err)
-    }
- }
-
-filmer()
- 
-function markUpGallery(filmsArr,genres) {
-    console.log("filmsArr", filmsArr)
-    console.log("genres", genres)
-        return filmsArr
-      .map(
-        ({id, title, release_date, poster_path, genre_ids}) =>{
-            const imgPath = `https://image.tmdb.org/t/p/w500${poster_path}`
-            const releaseDate = new Date(`${release_date}`);
-const releaseYear = releaseDate.getFullYear()
-const genresList = genres.filter(genre => genre_ids.includes(genre.id)).map(arr=>arr.name)
-
+<<<<<<< HEAD
 
           return `<li class = "film-gallery__item">
            <img class="film-gallery__image" src="${imgPath}" alt="${title}" loading="lazy"/>
            <div class="film-gallery__info">
             <p class="film-gallery__title">${title.toUpperCase()}</p>
             <p class="film-gallery__text">${Object.values(genresList).join(', ')} | ${releaseYear}</p>
+=======
+      return `<li class = "gallery-item">
+           <img class="gallery-image" src="${imgPath}" alt="${title}" loading="lazy"/>
+           <div class="info">
+            <p class="info-item">${title.toUpperCase()}</p>
+            <p class="info-item">${Object.values(
+              genresList
+            )} | ${releaseYear}</p>
+>>>>>>> 39150f009268cf8d9f4dea4f3f12124616eb827d
           </div>
-          </li>`}
-      )
-      .join('');
-      
-  }
+          </li>`;
+    })
+    .join('');
+}

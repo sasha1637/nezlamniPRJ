@@ -25,7 +25,7 @@
 }
 
 @media screen and (max-width: 320px) {
-    .overlay {
+    .overlay-header {
         height: 230px;
         margin-left: auto;
         margin-right: auto;
@@ -37,7 +37,7 @@
     @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-        .overlay {
+        .overlay-header{
             height: 230px;
             margin-left: auto;
             margin-right: auto;
@@ -88,42 +88,36 @@
                 &:not(:last-child) {
                     margin-right: 39px;
                 }
+                &--link{
+                    color: $title-color; 
+                    text-transform: uppercase;
+                }
             }
+
     }
     
 
     
    
 }
-// p {
-//     display: inline-block;
-//     border: 0;
-//     font-size: 12px;
-//     font-weight: 500;
-//     cursor: pointer;
-//     color: $title-color;
-//     background-color: transparent;
-//     text-transform: uppercase;
-// }
-
-
-//Узнатьу колег
+//Узнатьу колег 
 .search {
-    width: 100%;
+    // width: 100%;
+    width: 394px;
     margin-top: 40px;
     position: relative;
      margin: 0 auto;
     margin-top: 41px;
-
-    @media screen and (min-width: 768px) {
-        width: 394px;
+    @media screen and (max-width: 1280px) {
+        width: 336px;
     }
-          @media screen  and (min-width: 480px) and (max-width: 768px){
-            width: 336px;
+
+    @media screen  and (max-width: 768px){
+        margin-top: 57px;
+     width: 280px;
           }
-     @media screen and (max-width: 320px) and (max-width: 480px) {
+     @media screen and (max-width: 320px)  {
        width: 100%;
-       margin-top: 57px;
     }
 
 
@@ -139,12 +133,19 @@
             color: $title-color;
         }
     }
-
+// 245EBE393931
     &_btn {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
         right: 0;
+        border: 0;
+        cursor: pointer;
+        background-color: transparent;
+    }
+    &_svg {
+        width: 12px;
+        height: 12px;
     }
 
 }
@@ -157,20 +158,6 @@
         text-align: center;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-//нужно по клику менять какая кнопка активна
 .navigation_list--active {
     position: relative;
 

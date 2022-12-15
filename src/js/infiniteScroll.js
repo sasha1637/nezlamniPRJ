@@ -3,8 +3,7 @@ import { BASE_URL } from './apiFilms/baseUrl';
 
 import fetchMovies from './apiFilms/fetchMovies';
 
-import {markUpGallery} from './films';
-
+import { markUpGallery } from './films';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import axios from 'axios';
@@ -38,6 +37,7 @@ export default function infiniteScroll(page, per_page = 20) {
       const genres = await axios(
         `${BASE_URL}/genre/movie/list?api_key=${API_KEY}`
       );
+
       const total_results = await fetchedMovies.data.total_results;
 
       filmGallery.insertAdjacentHTML(

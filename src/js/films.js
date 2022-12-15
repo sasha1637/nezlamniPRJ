@@ -5,23 +5,28 @@ import axios from 'axios';
 const trending = new TrendingFilmsApiService();
 
 const filmGallery = document.querySelector('.film-gallery');
-const btnRef = document.querySelector('.btn-lm');
-console.log(btnRef);
-btnRef.style.display = 'none';
-btnRef.addEventListener('click', onLoadMore);
-function onLoadMore() {
-  // console.log('bgkjhghkgobject');
-  trending.incrementPage();
-  filmer();
-  //     .t
-}
+const guard = document.querySelector('.guard-js');
 
-// trending.fetchFilms().then(
-//   response => console.log(response)
-//   // filmGallery.innerHTML = markUpGallery(response.results)
-// );
-// trending.fetchGenres().then(response =>
-//     console.log(response))
+let ObserverOptions = {
+  root: null,
+  rootMargin: '500px',
+  threshold: 1.0,
+};
+
+let observer = new IntersectionObserver(observerFunction, ObserverOptions);
+
+let page = trending.page;
+
+function observerFunction(entries, observer) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      trending.incrementPage();
+      filmer();
+      page += 1;
+      console.log(page);
+    }
+  });
+}
 
 async function filmer() {
   try {
@@ -32,7 +37,8 @@ async function filmer() {
     console.log('into filmer -genres', genres);
     // filmGallery.innerHTML = markUpGallery(films,genres)
     filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films, genres));
-    btnRef.style.display = 'block';
+    observer.observe(guard);
+    // btnRef.style.display = 'block';
   } catch (err) {
     console.log(err);
   }

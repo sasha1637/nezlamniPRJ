@@ -84,7 +84,7 @@ pagination.on('afterMove', async (event) => {
   const currentPage = event.page
 trending.page=currentPage;
 window.scrollTo({
-  top: scroll,
+  top: 230
 });
   try {
     const films = await trending.fetchFilms();

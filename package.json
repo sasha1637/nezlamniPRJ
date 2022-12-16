@@ -2,7 +2,7 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://Vladimir-Plotnikov.github.io/nezlamniPRJ",
+  "homepage": "https://sasha1637.github.io/nezlamniPRJ",
   "scripts": {
     "start": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /nezlamniPRJ/"
@@ -21,7 +21,8 @@
     "axios": "^1.2.1",
     "lodash.throttle": "^4.1.1",
     "modern-normalize": "^1.1.0",
-    "notiflix": "^3.2.5"
+    "notiflix": "^3.2.5",
+    "tui-pagination": "^3.4.1"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",

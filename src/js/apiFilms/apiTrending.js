@@ -4,8 +4,8 @@ import { BASE_URL } from './baseUrl';
 import axios from 'axios';
 
 export class TrendingFilmsApiService {
-  constructor() {
-    this.page = 1;
+  constructor(page=1) {
+    this.page = page;
     // this.genres = this.fetchGenres();
   }
 
@@ -14,7 +14,7 @@ export class TrendingFilmsApiService {
       const options = { params: { api_key: API_KEY } };
       const url = `${BASE_URL}/trending/movie/week?page=${this.page}`;
       const response = await axios.get(url, options);
-      return response.data.results;
+      return response.data; //.results
     } catch (error) {
       throw new Error(`Oops, something went wrong`);
     }

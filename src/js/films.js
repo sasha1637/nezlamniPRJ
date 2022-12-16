@@ -1,72 +1,85 @@
 import { BASE_URL } from './apiFilms/baseUrl';
-export { markUpGallery };
 import { TrendingFilmsApiService } from './apiFilms/apiTrending';
 import axios from 'axios';
+import  markUpGallery from "./apiFilms/markUpGallery"
+import Pagination from 'tui-pagination';
+import 'tui-pagination/dist/tui-pagination.css';
 const trending = new TrendingFilmsApiService();
-
-const filmGallery = document.querySelector('.film-gallery');
-const guard = document.querySelector('.guard-js');
-
-let ObserverOptions = {
-  root: null,
-  rootMargin: '500px',
-  threshold: 1.0,
+const container = document.getElementById('pagination');
+const searchInput = document.querySelector('.search_input');
+const options = {
+  totalItems: 100,
+  itemsPerPage: 20,
+  visiblePages: 10,
+  page: 1,
+  centerAlign: true,
+  firstItemClassName: 'tui-first-child',
+  lastItemClassName: 'tui-last-child',
+  template: {
+    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+    currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+    moveButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</a>',
+    disabledMoveButton:
+      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</span>',
+    moreButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+        '<span class="tui-ico-ellip">...</span>' +
+      '</a>'
+  }
 };
-
-let observer = new IntersectionObserver(observerFunction, ObserverOptions);
-
-let page = trending.page;
-
-function observerFunction(entries, observer) {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      trending.incrementPage();
-      filmer();
-      page += 1;
-      console.log(page);
-    }
-  });
-}
+const filmGallery = document.querySelector('.film-gallery');
+const pagination = new Pagination(container, options);
 
 async function filmer() {
   try {
     const films = await trending.fetchFilms();
     const genres = await trending.fetchGenres();
+    const total_results = films.total_results;
+    const options = {
+      totalItems: `${total_results}`,
+      itemsPerPage: 20,
+      visiblePages: 10,
+      page: 1,
+      centerAlign: true,
+      firstItemClassName: 'tui-first-child',
+      lastItemClassName: 'tui-last-child',
+      template: {
+        page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+        currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+        moveButton:
+          '<a href="#" class="tui-page-btn tui-{{type}}">' +
+            '<span class="tui-ico-{{type}}">{{type}}</span>' +
+          '</a>',
+        disabledMoveButton:
+          '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+            '<span class="tui-ico-{{type}}">{{type}}</span>' +
+          '</span>',
+        moreButton:
+          '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+            '<span class="tui-ico-ellip">...</span>' +
+          '</a>'
+      }
+    };
+    const pagination = new Pagination(container, options);
+
     trending.genres = genres;
-    console.log('into filmer -trending.genres', trending.genres);
-    console.log('into filmer -genres', genres);
-    // filmGallery.innerHTML = markUpGallery(films,genres)
-    filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films, genres));
-    observer.observe(guard);
-    // btnRef.style.display = 'block';
+    filmGallery.innerHTML = markUpGallery(films.results,genres)
+    filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films.results, genres));
   } catch (err) {
     console.log(err);
   }
 }
-
 filmer();
 
-function markUpGallery(filmsArr, genres) {
-  console.log('filmsArr', filmsArr);
-  console.log('genres', genres);
-  return filmsArr
-    .map(({ id, title, release_date, poster_path, genre_ids }) => {
-      const imgPath = `https://image.tmdb.org/t/p/w500${poster_path}`;
-      const releaseDate = new Date(`${release_date}`);
-      const releaseYear = releaseDate.getFullYear();
-      const genresList = genres
-        .filter(genre => genre_ids.includes(genre.id))
-        .map(arr => arr.name);
 
-      return `<li class = "film-gallery__item" data-id="${id}">
-           <img class="film-gallery__image" src="${imgPath}" alt="${title}" loading="lazy"/>
-           <div class="film-gallery__info">
-            <p class="film-gallery__title">${title.toUpperCase()}</p>
-            <p class="film-gallery__text">${Object.values(genresList).join(
-              ', '
-            )} | ${releaseYear}</p>
-          </div>
-          </li>`;
-    })
-    .join('');
-}
+pagination.on('afterMove', async (event) => {
+  const currentPage = event.page
+trending.page=currentPage;
+  filmer()
+  
+})

@@ -60,11 +60,11 @@ export default function infiniteScroll(page, per_page = 20) {
 }
 
 
-async function fetchFilms (page) {
-  try {
-    const response = await axios.get(`${BASE_URL}/trending/movie/week?page=${page}&api_key=${API_KEY}`);
-    return response.data.results;
-  } catch (error) {
-    throw new Error(`Oops, something went wrong`);
-  }
-}
+// async function fetchFilms (page) {
+//   try {
+//     const response = await axios.get(`${BASE_URL}/trending/movie/week?page=${page}&api_key=${API_KEY}`);
+//     return response.data.results;
+//   } catch (error) {
+//     throw new Error(`Oops, something went wrong`);
+//   }
+// }

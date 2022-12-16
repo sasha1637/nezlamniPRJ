@@ -38,10 +38,12 @@ const pagination = new Pagination(container, options);
 
 async function filmer() {
   try {
+  
     const films = await trending.fetchFilms();
     const genres = await trending.fetchGenres();
-    const total_results = films.total_results;
-console.log(total_results);
+    const total_results = await films.total_results;
+    pagination.setTotalItems(total_results);
+    pagination.reset();
     trending.genres = genres;
     filmGallery.innerHTML = markUpGallery(films.results,genres)
     filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films.results, genres));
@@ -52,9 +54,19 @@ console.log(total_results);
 filmer();
 
 
+
 pagination.on('afterMove', async (event) => {
   const currentPage = event.page
 trending.page=currentPage;
-  filmer()
+  try {
+    const films = await trending.fetchFilms();
+    const genres = await trending.fetchGenres();
+    trending.genres = genres;
+    filmGallery.innerHTML = markUpGallery(films.results,genres)
+    filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films.results, genres));
+  } catch (err) {
+    console.log(err);
+  }
+}
   
-})
+)

@@ -58,9 +58,7 @@ export default function infiniteScroll(page, per_page = 20) {
     }, 300)
   );
 }
-import { API_KEY } from './apiFilms/apiKey';
-import { BASE_URL } from './apiFilms/baseUrl';
-import fetchFilms from './apiFilms/apiTrending';
+
 
 async function fetchFilms (page) {
   try {

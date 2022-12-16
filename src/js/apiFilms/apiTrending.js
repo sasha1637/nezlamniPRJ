@@ -4,8 +4,8 @@ import { BASE_URL } from './baseUrl';
 import axios from 'axios';
 
 export class TrendingFilmsApiService {
-  constructor(page=1) {
-    this.page = page;
+  constructor() {
+    this.page = 1;
     // this.genres = this.fetchGenres();
   }
 

@@ -1,16 +1,13 @@
-import { BASE_URL } from './apiFilms/baseUrl';
 import { TrendingFilmsApiService } from './apiFilms/apiTrending';
-import axios from 'axios';
 import  markUpGallery from "./apiFilms/markUpGallery"
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 const trending = new TrendingFilmsApiService();
 const container = document.getElementById('pagination');
-const searchInput = document.querySelector('.search_input');
 const options = {
   totalItems: 100,
   itemsPerPage: 20,
-  visiblePages: 10,
+  visiblePages: 5,
   page: 1,
   centerAlign: true,
   firstItemClassName: 'tui-first-child',
@@ -35,10 +32,41 @@ const options = {
 const filmGallery = document.querySelector('.film-gallery');
 const pagination = new Pagination(container, options);
 
+filmer();
+// pagination.on('afterMove', async (event) => {
+//   const currentPage = event.page
+// trending.page=currentPage;
+// startFilmsLoader()
+// })
+
+// function filmer() {
+//   startFilmsLoader().then(data=>{
+//     const total_results = data.total_results;
+//     pagination.setTotalItems(total_results);
+//     pagination.reset();
+//   }) 
+//     }
+// async function startFilmsLoader(){
+//   try {
+//     const films = await trending.fetchFilms();
+//     const genres = await trending.fetchGenres();
+//     trending.genres = genres;
+//     // filmGallery.innerHTML = markUpGallery(films.results,genres)
+//     filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films.results, genres));
+//     return films
+//   }catch (err) {
+//     console.log(err)
+//   }
+// }
+
+
+
+
+
+
 
 async function filmer() {
   try {
-  
     const films = await trending.fetchFilms();
     const genres = await trending.fetchGenres();
     const total_results = await films.total_results;
@@ -46,27 +74,27 @@ async function filmer() {
     pagination.reset();
     trending.genres = genres;
     filmGallery.innerHTML = markUpGallery(films.results,genres)
-    filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films.results, genres));
+    // filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films.results, genres));
   } catch (err) {
     console.log(err);
   }
 }
-filmer();
-
-
 
 pagination.on('afterMove', async (event) => {
   const currentPage = event.page
 trending.page=currentPage;
+window.scrollTo({
+  top: scroll,
+});
   try {
     const films = await trending.fetchFilms();
     const genres = await trending.fetchGenres();
     trending.genres = genres;
     filmGallery.innerHTML = markUpGallery(films.results,genres)
-    filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films.results, genres));
+    // filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films.results, genres));
+
   } catch (err) {
     console.log(err);
   }
-}
-  
-)
+
+})

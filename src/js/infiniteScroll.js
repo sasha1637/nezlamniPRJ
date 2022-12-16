@@ -3,7 +3,7 @@
 
 // import fetchMovies from './apiFilms/fetchMovies';
 
-// import { markUpGallery } from './films';
+// import markUpGallery  from './apiFilms/markUpGallery';
 
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import axios from 'axios';
